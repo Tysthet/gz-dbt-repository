@@ -14,13 +14,3 @@ SELECT
     joined.*,
     joined.revenue - joined.purchase_cost AS margin
 FROM joined
-
-
-/*
-SELECT 
-    sales.quantity,
-    sales.revenue,
-    products.purchase_price,
-FROM {{ref("stg_gz_raw_data__sales")}} AS sales
-INNER JOIN {{ref("stg_gz_raw_data__product")}} AS products USING (products_id)
-*/
