@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('gz_raw_data', 'sales') }}
+    select * from {{ source('raw', 'sales') }}
 
 ),
 
@@ -13,7 +13,8 @@ renamed as (
         orders_id,
         pdt_id AS products_id,
         revenue,
-        quantity
+        quantity,
+        -- CONCAT(orders_id, pdt_id) AS pk
 
     from source
 

@@ -7,6 +7,10 @@ sources:
     - name: sales
       identifier: raw_gz_sales
       description: Sales table where sales happen
+      freshness: 
+        warn_after:
+          count: 90
+          period: day  
       columns:
         - name: date_date
           description: The date
@@ -18,6 +22,11 @@ sources:
           description: Turnover from sales in $
         - name: quantity
           description: Amount of products sold
+      tests:
+        - unique:
+            column_name: "(orders_id || '-' || pdt_id)"
+        - not_null:
+            column_name: "(orders_id || '-' || pdt_id)"
     - name: product
       identifier: raw_gz_product
       description: Products table where all products are listed
