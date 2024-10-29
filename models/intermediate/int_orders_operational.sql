@@ -1,7 +1,7 @@
 SELECT
     orders.orders_id,
     orders.date_date,
-    ROUND((orders.margin + ship.shipping_fee - ship.logcost - ship.ship_cost),2) AS operational_margin
+    ROUND((orders.margin + ship.shipping_fee - ship.logcost - ship.ship_cost),2) AS operational_margin,
     ship.shipping_fee,
     ship.logcost,
     ship.ship_cost
