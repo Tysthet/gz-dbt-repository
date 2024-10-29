@@ -2,6 +2,7 @@
 WITH joined AS (
     SELECT
     sales.orders_id,
+    products.products_id,
     sales.date_date,
     sales.quantity,
     sales.revenue,

@@ -61,7 +61,6 @@ models:
       - name: orders_id
         description: Unique identifier for each order
         tests:
-          - unique
           - not_null
       - name: date_date
         description: The date, duh
@@ -79,6 +78,9 @@ models:
         description: I don't know, to be honest
       - name: margin
         description: Basic margin by product
+    tests:
+      - unique:
+          column_name: "(orders_id || '-' || products_id)"
   - name: int_orders_margin
     description: Aggregating data based on orders
     columns:
