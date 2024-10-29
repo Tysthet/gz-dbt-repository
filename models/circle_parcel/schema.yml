@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw_data_circle
+    tables:
+      - name: raw_cc_parcel
+        identifier: parcel
+        description: sdf
+      - name: raw_cc_parcel_product
+        identifier: product
+        description: dfgdf
+        
