@@ -54,3 +54,44 @@ sources:
           description: Cost of all logistics operations
         - name: ship_cost
           description: Shipping cost
+models:
+  - name: int_sales_margin
+    description: Calculating basic margin
+    columns:
+      - name: orders_id
+        description: Unique identifier for each order
+        tests:
+          - unique
+          - not_null
+      - name: date_date
+        description: The date, duh
+      - name: quantity
+        description: Quantity of products
+        tests:
+          - not_null
+      - name: revenue
+        description: Turnover from sales
+        tests:
+          - not_null
+      - name: purchase_price
+        description: Price at which the product is sold
+      - name: purchase_cost
+        description: I don't know, to be honest
+      - name: margin
+        description: Basic margin by product
+  - name: int_orders_margin
+    description: Aggregating data based on orders
+    columns:
+      - name: orders_id
+        description: Same as above
+        tests:
+          - unique
+          - not_null
+  - name: int_orders_operational
+    description: Calculating operational margin
+    columns:
+      - name: orders_id
+        description: Same as above
+        tests:
+          - unique
+          - not_null
