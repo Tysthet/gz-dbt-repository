@@ -9,7 +9,7 @@ sources:
       description: Sales table where sales happen
       freshness: 
         warn_after: {count: 90, period: day}
-      loaded_at_field: date_date
+      loaded_at_field: "CAST(date_date AS TIMESTAMP)"
       columns:
         - name: date_date
           description: The date
