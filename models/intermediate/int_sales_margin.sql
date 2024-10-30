@@ -13,5 +13,6 @@ WITH joined AS (
 )
 SELECT
     joined.*,
-    joined.revenue - joined.purchase_cost AS margin
+    joined.revenue - joined.purchase_cost AS margin,
+    {{ margin_percent(joined.revenue,joined.purchase_cost,1)}} AS margin_percent
 FROM joined
