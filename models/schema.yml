@@ -54,6 +54,19 @@ sources:
           description: Cost of all logistics operations
         - name: ship_cost
           description: Shipping cost
+    - name: criteo
+      identifier: raw_gz_criteo
+      description: Raw ad data from Criteo
+    - name: facebook
+      identifier: raw_gz_facebook
+      description: Raw ad data from Facebook
+    - name: bing
+      identifier: raw_gz_bing
+      description: Raw ad data from Bing
+    - name: adwords
+      identifier: raw_gz_adwords
+      description: Raw ad data from Adwords
+
 models:
   - name: int_sales_margin
     description: Calculating basic margin
