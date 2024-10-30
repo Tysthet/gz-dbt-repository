@@ -148,3 +148,11 @@ models:
         tests:
           - unique
           - not_null
+  - name: finance_campaign_day
+    description: Final output for the customer
+    columns:
+      - name: date_date
+        description: Unique identifier for each day
+        tests:
+          - not_null
+          - unique
