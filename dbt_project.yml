@@ -42,3 +42,5 @@ models:
       +materialized: table
     circle_parcel:
       schema: 'parcel_dbt_dev'
+    mart:
+      +materialized: table
