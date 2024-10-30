@@ -1,0 +1,99 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: gz_raw_data
+    tables:
+    - name: sales
+      identifier: raw_gz_sales
+      description: Sales table where sales happen
+      freshness: 
+        warn_after: {count: 90, period: day}
+      loaded_at_field: "CAST(date_date AS TIMESTAMP)"
+      columns:
+        - name: date_date
+          description: The date
+        - name: orders_id
+          description: Identifier for the orders
+        - name: pdt_id
+          description: Identifier for the products
+        - name: revenue
+          description: Turnover from sales in $
+        - name: quantity
+          description: Amount of products sold
+      tests:
+        - unique:
+            column_name: "(orders_id || '-' || pdt_id)"
+        - not_null:
+            column_name: "(orders_id || '-' || pdt_id)"
+    - name: product
+      identifier: raw_gz_product
+      description: Products table where all products are listed
+      columns:
+        - name: products_id
+          description: Identifier for the products
+          tests:
+            - unique
+            - not_null
+        - name: purchSE_price
+          description: Individual price of the products
+    - name: ship
+      identifier: raw_gz_ship
+      description: Shipping table where shipping happen
+      columns:
+        - name: orders_id
+          description: Identifier for the orders
+          tests:
+            - unique
+            - not_null
+        - name: shipping_fee
+          description: Shipping fee invoiced to the customer
+        - name: shipping_fee_1
+          description: Useless duplicate
+        - name: logCost
+          description: Cost of all logistics operations
+        - name: ship_cost
+          description: Shipping cost
+models:
+  - name: int_sales_margin
+    description: Calculating basic margin
+    columns:
+      - name: orders_id
+        description: Unique identifier for each order
+        tests:
+          - not_null
+      - name: date_date
+        description: The date, duh
+      - name: quantity
+        description: Quantity of products
+        tests:
+          - not_null
+      - name: revenue
+        description: Turnover from sales
+        tests:
+          - not_null
+      - name: purchase_price
+        description: Price at which the product is sold
+      - name: purchase_cost
+        description: I don't know, to be honest
+      - name: margin
+        description: Basic margin by product
+    tests:
+      - unique:
+          column_name: "(orders_id || '-' || products_id)"
+  - name: int_orders_margin
+    description: Aggregating data based on orders
+    columns:
+      - name: orders_id
+        description: Same as above
+        tests:
+          - unique
+          - not_null
+  - name: int_orders_operational
+    description: Calculating operational margin
+    columns:
+      - name: orders_id
+        description: Same as above
+        tests:
+          - unique
+          - not_null
