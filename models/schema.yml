@@ -134,3 +134,11 @@ models:
         tests:
           - unique
           - not_null
+  - name: int_campaigns_day.sql
+    description: Aggregated campaigns data by day
+    columns:
+      - name: date_date
+        description: Unsurprisingly, the date
+        tests:
+          - unique
+          - not_null
